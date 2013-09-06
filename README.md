@@ -1,2 +1,6 @@
 TinyWireM
 =========
+
+ATtiny I2C library, adapted from BroHogan's code on Arduino Playground: http://playground.arduino.cc/Code/USIi2c
+
+Minor changes for consistency with the Arduino 1.0 Wire library (e.g. subclass of Stream, uses write() instead of send()). Buffer size slightly increased for Adafruit_LEDBackpack use.
