@@ -43,7 +43,8 @@
 #define USI_RCVE         1              // indicates receiving from TWI
 #define USI_BUF_SIZE    18              // bytes in message buffer
 
-class USI_TWI : public Stream
+//class USI_TWI : public Stream
+class USI_TWI
 {
   private:
 	static uint8_t USI_Buf[];           // holds I2C send and receive data

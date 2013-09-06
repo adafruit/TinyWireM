@@ -37,8 +37,8 @@ USI_TWI::USI_TWI(){
 
 // Public Methods //////////////////////////////////////////////////////////////
 
-int USI_TWI::peek(){}   // Dummy function for now to make compiler happy
-void USI_TWI::flush(){} // Ditto
+//int USI_TWI::peek(){}
+//void USI_TWI::flush(){}
 
 void USI_TWI::begin(){ // initialize I2C lib
   USI_TWI_Master_Initialise();          
