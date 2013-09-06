@@ -22,8 +22,6 @@
 
 // Defines controlling timing limits - SCL <= 100KHz.
 
-#define SYS_CLK   1000.0  // [kHz]	Default for ATtiny2313
-
 // For use with _delay_us()
 #define T2_TWI    5 		// >4,7us
 #define T4_TWI    4 		// >4,0us
