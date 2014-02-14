@@ -56,12 +56,25 @@ size_t USI_TWI::write(uint8_t data){ // buffers up data to send
   return 1;
 }
 
-uint8_t USI_TWI::endTransmission(){ // actually sends the buffer
+uint8_t USI_TWI::endTransmission() {
+  endTransmission(1);
+}
+
+uint8_t USI_TWI::endTransmission(uint8_t stop){ // actually sends the buffer
   bool xferOK = false;
   uint8_t errorCode = 0;
   xferOK = USI_TWI_Start_Read_Write(USI_Buf,USI_BufIdx+1); // core func that does the work
   USI_BufIdx = 0;
-  if (xferOK) return 0;
+  if (xferOK) {
+    if (stop) {
+      errorCode = USI_TWI_Master_Stop();
+      if (errorCode == 0) {
+        errorCode = USI_TWI_Get_State_Info();
+        return errorCode;
+      }
+    }
+    return 0;
+  }
   else {                                  // there was an error
     errorCode = USI_TWI_Get_State_Info(); // this function returns the error number
     return errorCode;
@@ -77,7 +90,14 @@ uint8_t USI_TWI::requestFrom(uint8_t slaveAddr, uint8_t numBytes){ // setup for 
   USI_Buf[0] = (slaveAddr<<TWI_ADR_BITS) | USI_RCVE;   // setup address & Rcve bit
   xferOK = USI_TWI_Start_Read_Write(USI_Buf,numBytes); // core func that does the work
   // USI_Buf now holds the data read
-  if (xferOK) return 0;
+  if (xferOK) {
+    errorCode = USI_TWI_Master_Stop();
+    if (errorCode == 0) {
+      errorCode = USI_TWI_Get_State_Info();
+      return errorCode;
+    }
+    return 0;
+  }
   else {                                  // there was an error
     errorCode = USI_TWI_Get_State_Info(); // this function returns the error number
     return errorCode;

@@ -120,4 +120,5 @@
 void              USI_TWI_Master_Initialise( void );
 unsigned char USI_TWI_Start_Random_Read( unsigned char * , unsigned char );
 unsigned char USI_TWI_Start_Read_Write( unsigned char * , unsigned char );
+unsigned char USI_TWI_Master_Stop( void );
 unsigned char USI_TWI_Get_State_Info( void );
