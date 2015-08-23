@@ -128,6 +128,12 @@
 #define TRUE  1
 #define FALSE 0
 
+#ifndef DDR_USI_SCL
+#define DDR_USI_SCL DDR_USI
+#define PORT_USI_SCL PORT_USI
+#define PIN_USI_SCL PIN_USI
+#endif
+
 //********** Prototypes **********//
 
 void              USI_TWI_Master_Initialise( void );
