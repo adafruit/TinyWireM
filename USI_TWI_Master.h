@@ -93,9 +93,9 @@
     #define DDR_USI             DDRB
     #define PORT_USI            PORTB
     #define PIN_USI             PINB
-    #define DDR_USI_SCL             DDRC
-    #define PORT_USI_SCL            PORTC
-    #define PIN_USI_SCL             PINC
+    #define DDR_USI_CL             DDRC
+    #define PORT_USI_CL            PORTC
+    #define PIN_USI_CL             PINC
     #define PORT_USI_SDA        PORTB1
     #define PORT_USI_SCL        PORTC1
     #define PIN_USI_SDA         PINB1
@@ -128,10 +128,10 @@
 #define TRUE  1
 #define FALSE 0
 
-#ifndef DDR_USI_SCL
-#define DDR_USI_SCL DDR_USI
-#define PORT_USI_SCL PORT_USI
-#define PIN_USI_SCL PIN_USI
+#ifndef DDR_USI_CL
+    #define DDR_USI_CL DDR_USI
+    #define PORT_USI_CL PORT_USI
+#   define PIN_USI_CL PIN_USI
 #endif
 
 //********** Prototypes **********//
