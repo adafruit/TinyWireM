@@ -1,6 +1,7 @@
 #include <TinyWireM.h>
-//Demo of reading AT24 EEPROM with ATTiny1634, and logging the results to serial. Reads the first 256 bytes. 
+//Demo of reading AT24 EEPROM, and logging the results to serial. Reads the first 256 bytes. 
 //#define DoWrite //uncomment to write consecutive integers to first 256 bytes while sketch runs
+//comment out Serial statements for boards without hardware serial. 
 
 
 byte i=0;
@@ -8,9 +9,9 @@ byte i=0;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(9600); //comment out if you're using a chip w/out serial.
   TinyWireM.begin();                    // initialize I2C lib
-  Serial.println("Tinywire begun");
+  Serial.println("Tinywire begun"); //comment out if you're using a chip w/out serial.
 }
 
 void loop() {
@@ -29,7 +30,7 @@ void loop() {
   TinyWireM.send(i);
   TinyWireM.endTransmission();  
   TinyWireM.requestFrom(0x50,1);
-  Serial.println(TinyWireM.receive());
+  Serial.println(TinyWireM.receive()); //comment out if you're using a chip w/out serial.
   delay(500);
   i++;
 }
