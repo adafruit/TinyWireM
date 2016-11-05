@@ -89,6 +89,18 @@
     #  define PIN_USI_SCL       PINA4
 #endif
 
+#if defined(__AVR_ATtiny167__) | defined(__AVR_ATtiny87__) 
+    #  define DDR_USI           DDRB
+    #  define PORT_USI          PORTB
+    #  define PIN_USI           PINB
+    #  define PORT_USI_SDA      PORTB0
+    #  define PORT_USI_SCL      PORTB2
+    #  define PIN_USI_SDA       PINB0
+    #  define PIN_USI_SCL       PINB2
+
+
+#endif
+
 #if defined(__AVR_ATtiny1634__)
     #define DDR_USI             DDRB
     #define PORT_USI            PORTB
