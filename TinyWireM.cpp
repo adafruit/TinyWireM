@@ -50,7 +50,7 @@ void USI_TWI::beginTransmission(uint8_t slaveAddr){ // setup address & write bit
 }
 
 size_t USI_TWI::write(uint8_t data){ // buffers up data to send
-  if (USI_BufIdx >= USI_BUF_SIZE) return 0;       // dont blow out the buffer
+  if (USI_BufIdx >= USI_BUF_SIZE-1) return 0;       // dont blow out the buffer
   USI_BufIdx++;                                   // inc for next byte in buffer
   USI_Buf[USI_BufIdx] = data;
   return 1;
