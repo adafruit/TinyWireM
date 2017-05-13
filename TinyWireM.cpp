@@ -57,7 +57,7 @@ size_t USI_TWI::write(uint8_t data){ // buffers up data to send
 }
 
 uint8_t USI_TWI::endTransmission() {
-  endTransmission(1);
+  return endTransmission(1);
 }
 
 uint8_t USI_TWI::endTransmission(uint8_t stop){ // actually sends the buffer
