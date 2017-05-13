@@ -46,9 +46,9 @@ union  USI_TWI_state
 void USI_TWI_Master_Initialise( void )
 {
   PORT_USI |= (1<<PIN_USI_SDA);           // Enable pullup on SDA, to set high as released state.
-  PORT_USI |= (1<<PIN_USI_SCL);           // Enable pullup on SCL, to set high as released state.
+  PORT_USI_CL |= (1<<PIN_USI_SCL);           // Enable pullup on SCL, to set high as released state.
   
-  DDR_USI  |= (1<<PIN_USI_SCL);           // Enable SCL as output.
+  DDR_USI_CL  |= (1<<PIN_USI_SCL);           // Enable SCL as output.
   DDR_USI  |= (1<<PIN_USI_SDA);           // Enable SDA as output.
   
   USIDR    =  0xFF;                       // Preload dataregister with "released level" data.
@@ -193,7 +193,7 @@ unsigned char USI_TWI_Start_Transceiver_With_Data( unsigned char *msg, unsigned 
     if (USI_TWI_state.addressMode || USI_TWI_state.masterWriteDataMode)
     {
       /* Write a byte */
-      PORT_USI &= ~(1<<PIN_USI_SCL);                // Pull SCL LOW.
+      PORT_USI_CL &= ~(1<<PIN_USI_SCL);                // Pull SCL LOW.
       USIDR     = *(msg++);                        // Setup data.
       USI_TWI_Master_Transfer( tempUSISR_8bit );    // Send 8 bits on bus.
       
@@ -270,7 +270,7 @@ unsigned char USI_TWI_Master_Transfer( unsigned char temp )
   { 
 	_delay_us(T2_TWI);
     USICR = temp;                          // Generate positve SCL edge.
-    while( !(PIN_USI & (1<<PIN_USI_SCL)) );// Wait for SCL to go high.
+    while( !(PIN_USI_CL & (1<<PIN_USI_SCL)) );// Wait for SCL to go high.
 	_delay_us(T4_TWI);
     USICR = temp;                          // Generate negative SCL edge.
   }while( !(USISR & (1<<USIOIF)) );        // Check for transfer complete.
@@ -288,14 +288,14 @@ unsigned char USI_TWI_Master_Transfer( unsigned char temp )
 unsigned char USI_TWI_Master_Start( void )
 {
 /* Release SCL to ensure that (repeated) Start can be performed */
-  PORT_USI |= (1<<PIN_USI_SCL);                     // Release SCL.
-  while( !(PORT_USI & (1<<PIN_USI_SCL)) );          // Verify that SCL becomes high.
+  PORT_USI_CL |= (1<<PIN_USI_SCL);                     // Release SCL.
+  while( !(PORT_USI_CL & (1<<PIN_USI_SCL)) );          // Verify that SCL becomes high.
   _delay_us(T2_TWI);
 
 /* Generate Start Condition */
   PORT_USI &= ~(1<<PIN_USI_SDA);                    // Force SDA LOW.
 	_delay_us(T4_TWI);                         
-  PORT_USI &= ~(1<<PIN_USI_SCL);                    // Pull SCL LOW.
+  PORT_USI_CL &= ~(1<<PIN_USI_SCL);                    // Pull SCL LOW.
   PORT_USI |= (1<<PIN_USI_SDA);                     // Release SDA.
 
 #ifdef SIGNAL_VERIFY
@@ -314,8 +314,8 @@ unsigned char USI_TWI_Master_Start( void )
 unsigned char USI_TWI_Master_Stop( void )
 {
   PORT_USI &= ~(1<<PIN_USI_SDA);           // Pull SDA low.
-  PORT_USI |= (1<<PIN_USI_SCL);            // Release SCL.
-  while( !(PIN_USI & (1<<PIN_USI_SCL)) );  // Wait for SCL to go high.  
+  PORT_USI_CL |= (1<<PIN_USI_SCL);            // Release SCL.
+  while( !(PIN_USI_CL & (1<<PIN_USI_SCL)) );  // Wait for SCL to go high.  
 	_delay_us(T4_TWI);
   PORT_USI |= (1<<PIN_USI_SDA);            // Release SDA.
 	_delay_us(T2_TWI);

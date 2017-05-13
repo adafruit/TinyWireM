@@ -89,6 +89,31 @@
     #  define PIN_USI_SCL       PINA4
 #endif
 
+#if defined(__AVR_ATtiny167__) | defined(__AVR_ATtiny87__) 
+    #  define DDR_USI           DDRB
+    #  define PORT_USI          PORTB
+    #  define PIN_USI           PINB
+    #  define PORT_USI_SDA      PORTB0
+    #  define PORT_USI_SCL      PORTB2
+    #  define PIN_USI_SDA       PINB0
+    #  define PIN_USI_SCL       PINB2
+
+
+#endif
+
+#if defined(__AVR_ATtiny1634__)
+    #define DDR_USI             DDRB
+    #define PORT_USI            PORTB
+    #define PIN_USI             PINB
+    #define DDR_USI_CL             DDRC
+    #define PORT_USI_CL            PORTC
+    #define PIN_USI_CL             PINC
+    #define PORT_USI_SDA        PORTB1
+    #define PORT_USI_SCL        PORTC1
+    #define PIN_USI_SDA         PINB1
+    #define PIN_USI_SCL         PINC1
+#endif
+
 #if defined(__AVR_AT90Tiny2313__) | defined(__AVR_ATtiny2313__)
     #define DDR_USI             DDRB
     #define PORT_USI            PORTB
@@ -114,6 +139,12 @@
 // General defines
 #define TRUE  1
 #define FALSE 0
+
+#ifndef DDR_USI_CL
+    #define DDR_USI_CL DDR_USI
+    #define PORT_USI_CL PORT_USI
+#   define PIN_USI_CL PIN_USI
+#endif
 
 //********** Prototypes **********//
 
