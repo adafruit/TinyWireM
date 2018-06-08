@@ -1,3 +1,6 @@
+# STOP - IF USING MY CORE, DO NOT USE THIS LIBRARY #
+## MY CORE NOW HAS UNIVERSAL Wire.h LIBRARY. Just use Wire.h and unmodified I2C device libraries ##
+
 TinyWireM
 =========
 
