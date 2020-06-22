@@ -170,8 +170,8 @@ unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char *msg,
 
   // This clear must be done before calling this function so that memReadMode
   // can be specified.
-  //  USI_TWI_state.errorState = 0;				// Clears all mode
-  //  bits also
+  //  USI_TWI_state.errorState = 0;				// Clears all
+  //  mode bits also
 
   USI_TWI_state.addressMode = TRUE; // Always true for first byte
 
