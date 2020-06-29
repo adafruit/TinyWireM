@@ -1,5 +1,4 @@
-TinyWireM
-=========
+# TinyWireM [![Build Status](https://github.com/adafruit/TinyWireM/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/TinyWireM/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/TinyWireM/html/index.html)
 
 ATtiny (e.g. Adafruit Trinket, Gemma) I2C library, adapted from BroHogan's code on Arduino Playground: http://playground.arduino.cc/Code/USIi2c
 
