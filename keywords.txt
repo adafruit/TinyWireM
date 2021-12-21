@@ -16,6 +16,7 @@ endTransmission	KEYWORD2
 requestFrom	KEYWORD2
 write	KEYWORD2
 read	KEYWORD2
+end KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
