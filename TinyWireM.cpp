@@ -125,6 +125,8 @@ int USI_TWI::available() { // the bytes available that haven't been read yet
   return USI_BytesAvail - (USI_LastRead);
 }
 
+void USI_TWI::end() { USI_TWI_Master_Stop(); }
+
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 /*!

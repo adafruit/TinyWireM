@@ -182,6 +182,11 @@ public:
       return 0;
     return c;
   }
+  /*!
+   * @brief Function for generating a TWI Stop Condition. Used to release
+   * the TWI bus
+   */
+  void end();
 };
 
 extern USI_TWI TinyWireM;
