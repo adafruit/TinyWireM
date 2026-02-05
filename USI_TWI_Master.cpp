@@ -25,6 +25,7 @@ memory adrs;
 bytes to read.
 ****************************************************************************/
 #include "USI_TWI_Master.h"
+
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -35,7 +36,7 @@ bytes to read.
  * @param msgSize How much data to send from the buffer
  * @return Returns true if transmission was successful
  */
-unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char *,
+unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char*,
                                                   unsigned char);
 unsigned char USI_TWI_Master_Transfer(unsigned char);
 unsigned char USI_TWI_Master_Start(void);
@@ -104,7 +105,7 @@ unsigned char USI_TWI_Get_State_Info(void) {
  * @param msgSize How much to read from the buffer
  * @return Returns the message read
  */
-unsigned char USI_TWI_Start_Random_Read(unsigned char *msg,
+unsigned char USI_TWI_Start_Random_Read(unsigned char* msg,
                                         unsigned char msgSize) {
   *(msg) &= ~(TRUE << TWI_READ_BIT); // clear the read bit if it's set
   USI_TWI_state.errorState = 0;
@@ -127,9 +128,8 @@ unsigned char USI_TWI_Start_Random_Read(unsigned char *msg,
  * @param msgSize The size of the message
  * @return Returns the data read
  */
-unsigned char USI_TWI_Start_Read_Write(unsigned char *msg,
+unsigned char USI_TWI_Start_Read_Write(unsigned char* msg,
                                        unsigned char msgSize) {
-
   USI_TWI_state.errorState = 0; // Clears all mode bits also
 
   return (USI_TWI_Start_Transceiver_With_Data(msg, msgSize));
@@ -155,7 +155,7 @@ unsigned char USI_TWI_Start_Read_Write(unsigned char *msg,
  * @param msg Pointer to the location of the msg buffer
  * @param msgSize How much data to send from the buffer
  */
-unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char *msg,
+unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char* msg,
                                                   unsigned char msgSize) {
   unsigned char const tempUSISR_8bit =
       (1 << USISIF) | (1 << USIOIF) | (1 << USIPF) |
@@ -165,7 +165,7 @@ unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char *msg,
       (1 << USISIF) | (1 << USIOIF) | (1 << USIPF) |
       (1 << USIDC) |    // Prepare register value to: Clear flags, and
       (0xE << USICNT0); // set USI to shift 1 bit i.e. count 2 clock edges.
-  unsigned char *savedMsg;
+  unsigned char* savedMsg;
   unsigned char savedMsgSize;
 
   // This clear must be done before calling this function so that memReadMode
@@ -176,7 +176,7 @@ unsigned char USI_TWI_Start_Transceiver_With_Data(unsigned char *msg,
   USI_TWI_state.addressMode = TRUE; // Always true for first byte
 
 #ifdef PARAM_VERIFICATION
-  if (msg > (unsigned char *)RAMEND) // Test if address is outside SRAM space
+  if (msg > (unsigned char*)RAMEND) // Test if address is outside SRAM space
   {
     USI_TWI_state.errorState = USI_TWI_DATA_OUT_OF_BOUND;
     return (FALSE);
@@ -305,7 +305,7 @@ unsigned char USI_TWI_Master_Transfer(unsigned char temp) {
     while (!(PIN_USI & (1 << PIN_USI_SCL)))
       ; // Wait for SCL to go high.
     _delay_us(T4_TWI);
-    USICR = temp;                     // Generate negative SCL edge.
+    USICR = temp; // Generate negative SCL edge.
   } while (!(USISR & (1 << USIOIF))); // Check for transfer complete.
 
   _delay_us(T2_TWI);

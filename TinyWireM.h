@@ -47,8 +47,9 @@
 #ifndef TinyWireM_h
 #define TinyWireM_h
 
-#include "Arduino.h"
 #include <inttypes.h>
+
+#include "Arduino.h"
 #define USI_SEND 0      //!< indicates sending to TWI
 #define USI_RCVE 1      //!< indicates receiving from TWI
 #define USI_BUF_SIZE 18 //!< bytes in message buffer
@@ -57,13 +58,13 @@
  * @brief class USI_TWI : public Stream
  */
 class USI_TWI {
-private:
+ private:
   static uint8_t USI_Buf[];      // holds I2C send and receive data
   static uint8_t USI_BufIdx;     // current number of bytes in the send buff
   static uint8_t USI_LastRead;   // number of bytes read so far
   static uint8_t USI_BytesAvail; // number of bytes requested but not read
 
-public:
+ public:
   USI_TWI();
   /*!
    * @brief Initialize library for main function
@@ -86,7 +87,7 @@ public:
    * @param n How much data to send
    * @return Returns 1 when successful
    */
-  inline size_t write(uint8_t *d, uint8_t n) {
+  inline size_t write(uint8_t* d, uint8_t n) {
     uint16_t i;
     for (i = 0; i < n; i++)
       write(d[i]);
@@ -97,44 +98,58 @@ public:
    * @param n Data to send
    * @return Returns 1 when successful
    */
-  inline size_t write(unsigned long n) { return write((uint8_t)n); }
+  inline size_t write(unsigned long n) {
+    return write((uint8_t)n);
+  }
   /*!
    * @brief Sends data
    * @param n Data to send
    * @return Returns 1 when successful
    */
-  inline size_t write(long n) { return write((uint8_t)n); }
+  inline size_t write(long n) {
+    return write((uint8_t)n);
+  }
   /*!
    * @brief Sends data
    * @param n Data to send
    * @return Returns 1 when successful
    */
-  inline size_t write(unsigned int n) { return write((uint8_t)n); }
+  inline size_t write(unsigned int n) {
+    return write((uint8_t)n);
+  }
   /*!
    * @brief Sends data
    * @param n Data to send
    * @return Returns 1 when successful
    */
-  inline size_t write(int n) { return write((uint8_t)n); }
+  inline size_t write(int n) {
+    return write((uint8_t)n);
+  }
   /*!
    * @brief Buffers up data to send
    * @param b Data to send
    * @return Returns 1 when successful
    */
-  void send(uint8_t b) { write(b); }
+  void send(uint8_t b) {
+    write(b);
+  }
   /*!
    * @brief Sends data
    * @param d Buffer to send from
    * @param n How much to send from buffer
    * @return Returns 1 when successful
    */
-  void send(uint8_t *d, uint8_t n) { write(d, n); }
+  void send(uint8_t* d, uint8_t n) {
+    write(d, n);
+  }
   /*!
    * @brief Sends data
    * @param n Data to send
    * @return Returns 1 when successful
    */
-  void send(int n) { write((uint8_t)n); }
+  void send(int n) {
+    write((uint8_t)n);
+  }
   /*!
    * @brief Ends the transmission
    * @return Returns the error code if there was one

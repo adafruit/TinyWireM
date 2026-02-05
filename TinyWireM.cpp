@@ -23,13 +23,14 @@
  */
 
 extern "C" {
-//#include "USI_TWI_Master.h"
-//#include <USI_TWI_Master.h>
-//#include <USI_TWI_Master\USI_TWI_Master.h>
-//#include <USI_TWI_Master/USI_TWI_Master.h>
+// #include "USI_TWI_Master.h"
+// #include <USI_TWI_Master.h>
+// #include <USI_TWI_Master\USI_TWI_Master.h>
+// #include <USI_TWI_Master/USI_TWI_Master.h>
 }
 
 #include "TinyWireM.h"
+
 #include "USI_TWI_Master.h"
 
 // Initialize Class Variables //////////////////////////////////////////////////
@@ -65,7 +66,9 @@ size_t USI_TWI::write(uint8_t data) { // buffers up data to send
   return 1;
 }
 
-uint8_t USI_TWI::endTransmission() { return endTransmission(1); }
+uint8_t USI_TWI::endTransmission() {
+  return endTransmission(1);
+}
 
 uint8_t USI_TWI::endTransmission(uint8_t stop) { // actually sends the buffer
   bool xferOK = false;
@@ -89,9 +92,9 @@ uint8_t USI_TWI::endTransmission(uint8_t stop) { // actually sends the buffer
   }
 }
 
-uint8_t
-USI_TWI::requestFrom(uint8_t slaveAddr,
-                     uint8_t numBytes) { // setup for receiving from slave
+uint8_t USI_TWI::requestFrom(
+    uint8_t slaveAddr,
+    uint8_t numBytes) { // setup for receiving from slave
   bool xferOK = false;
   uint8_t errorCode = 0;
   USI_LastRead = 0;
@@ -125,7 +128,9 @@ int USI_TWI::available() { // the bytes available that haven't been read yet
   return USI_BytesAvail - (USI_LastRead);
 }
 
-void USI_TWI::end() { USI_TWI_Master_Stop(); }
+void USI_TWI::end() {
+  USI_TWI_Master_Stop();
+}
 
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
