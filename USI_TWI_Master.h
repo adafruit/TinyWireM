@@ -30,8 +30,8 @@
 #define T4_TWI 4 //!< >4,0us
 
 // Defines error code generating
-//#define PARAM_VERIFICATION
-//#define NOISE_TESTING
+// #define PARAM_VERIFICATION
+// #define NOISE_TESTING
 #define SIGNAL_VERIFY //!< Verifies the signal is correct. This should probably
                       //!< be on always.
 
@@ -39,7 +39,7 @@
   Bit and byte definitions
 ****************************************************************************/
 #define TWI_READ_BIT 0 //!< Bit position for R/W bit in "address byte".
-#define TWI_ADR_BITS                                                           \
+#define TWI_ADR_BITS \
   1 //!< Bit position for LSB of the slave address bits in the init byte.
 #define TWI_NACK_BIT 0 //!< Bit position for (N)ACK bit.
 
@@ -47,27 +47,27 @@
 // are now
 //		lowest numbers so they're easily recognized as LED flashes.
 #define USI_TWI_NO_DATA 0x08 //!< Transmission buffer is empty
-#define USI_TWI_DATA_OUT_OF_BOUND                                              \
+#define USI_TWI_DATA_OUT_OF_BOUND \
   0x09                            //!< Transmission buffer is outside SRAM space
 #define USI_TWI_UE_START_CON 0x07 //!< Unexpected Start Condition
 #define USI_TWI_UE_STOP_CON 0x06  //!< Unexpected Stop Condition
 #define USI_TWI_UE_DATA_COL 0x05  //!< Unexpected Data Collision (arbitration)
 #define USI_TWI_NO_ACK_ON_DATA 0x02 //!< The slave did not acknowledge  all data
-#define USI_TWI_NO_ACK_ON_ADDRESS                                              \
+#define USI_TWI_NO_ACK_ON_ADDRESS \
   0x01 //!< The slave did not acknowledge  the address
-#define USI_TWI_MISSING_START_CON                                              \
+#define USI_TWI_MISSING_START_CON \
   0x03 //!< Generated Start Condition not detected on bus
-#define USI_TWI_MISSING_STOP_CON                                               \
+#define USI_TWI_MISSING_STOP_CON \
   0x04 //!< Generated Stop Condition not detected on bus
 #define USI_TWI_BAD_MEM_READ 0x0A //!< Error during external memory read
 
 // Device dependant defines ADDED BACK IN FROM ORIGINAL ATMEL .H
 
-#if defined(__AVR_AT90Mega169__) | defined(__AVR_ATmega169__) |                \
-    defined(__AVR_AT90Mega165__) | defined(__AVR_ATmega165__) |                \
-    defined(__AVR_ATmega325__) | defined(__AVR_ATmega3250__) |                 \
-    defined(__AVR_ATmega645__) | defined(__AVR_ATmega6450__) |                 \
-    defined(__AVR_ATmega329__) | defined(__AVR_ATmega3290__) |                 \
+#if defined(__AVR_AT90Mega169__) | defined(__AVR_ATmega169__) | \
+    defined(__AVR_AT90Mega165__) | defined(__AVR_ATmega165__) | \
+    defined(__AVR_ATmega325__) | defined(__AVR_ATmega3250__) |  \
+    defined(__AVR_ATmega645__) | defined(__AVR_ATmega6450__) |  \
+    defined(__AVR_ATmega329__) | defined(__AVR_ATmega3290__) |  \
     defined(__AVR_ATmega649__) | defined(__AVR_ATmega6490__)
 #define DDR_USI DDRE
 #define PORT_USI PORTE
@@ -78,8 +78,8 @@
 #define PIN_USI_SCL PINE4
 #endif
 
-#if defined(__AVR_ATtiny25__) | defined(__AVR_ATtiny45__) |                    \
-    defined(__AVR_ATtiny85__) | defined(__AVR_AT90Tiny26__) |                  \
+#if defined(__AVR_ATtiny25__) | defined(__AVR_ATtiny45__) |   \
+    defined(__AVR_ATtiny85__) | defined(__AVR_AT90Tiny26__) | \
     defined(__AVR_ATtiny26__)
 #define DDR_USI DDRB
 #define PORT_USI PORTB
@@ -129,7 +129,7 @@
 //********** Prototypes **********//
 
 void USI_TWI_Master_Initialise(void);
-unsigned char USI_TWI_Start_Random_Read(unsigned char *, unsigned char);
-unsigned char USI_TWI_Start_Read_Write(unsigned char *, unsigned char);
+unsigned char USI_TWI_Start_Random_Read(unsigned char*, unsigned char);
+unsigned char USI_TWI_Start_Read_Write(unsigned char*, unsigned char);
 unsigned char USI_TWI_Master_Stop(void);
 unsigned char USI_TWI_Get_State_Info(void);
